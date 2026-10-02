@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Add to Stuff</title>
+  <link rel="stylesheet" href="taskpane.css">
+  <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="config.js"></script>
+  <script src="task.js"></script>
+  <script src="taskpane.js" defer></script>
+</head>
+<body>
+  <main>
+    <header>
+      <img src="assets/icon-32.png" alt="" width="20" height="20">
+      <span>Stuff</span>
+    </header>
+
+    <p id="boot" class="muted">Loading…</p>
+
+    <!-- Signed out -->
+    <form id="signin" hidden>
+      <p class="muted">Sign in with your Stuff account. You only do this once.</p>
+      <label>Email<input id="email" type="email" autocomplete="username" required></label>
+      <label>Password<input id="password" type="password" autocomplete="current-password" required></label>
+      <button type="submit" class="primary">Sign in</button>
+      <p id="signin-error" class="error" hidden></p>
+    </form>
+
+    <!-- Compose -->
+    <form id="compose" hidden>
+      <label>Task
+        <textarea id="title" rows="2" maxlength="500" required></textarea>
+      </label>
+
+      <fieldset>
+        <legend>When</legend>
+        <div class="chips" id="when">
+          <button type="button" data-when="none" class="chip on">Inbox</button>
+          <button type="button" data-when="today" class="chip">Today</button>
+          <button type="button" data-when="tomorrow" class="chip">Tomorrow</button>
+          <button type="button" data-when="pick" class="chip">Pick…</button>
+        </div>
+        <input id="do-date" type="date" hidden>
+      </fieldset>
+
+      <label class="row">Deadline <input id="deadline" type="date"></label>
+
+      <fieldset class="checks">
+        <legend>Notes</legend>
+        <label class="check"><input id="inc-link" type="checkbox" checked> Link back to this email</label>
+        <label class="check"><input id="inc-sender" type="checkbox" checked> Sender and date</label>
+        <label class="check"><input id="inc-body" type="checkbox"> Email text</label>
+        <p class="hint">The task title and the boxes you tick are all that leave Outlook.</p>
+      </fieldset>
+
+      <button type="submit" class="primary" id="save">Add to Stuff</button>
+      <p id="save-error" class="error" hidden></p>
+    </form>
+
+    <!-- Done -->
+    <section id="done" hidden>
+      <p class="ok">✓ Added to <strong id="done-where">Inbox</strong></p>
+      <p class="muted">Archive the email when you're ready. It's in Stuff now.</p>
+      <div class="actions">
+        <button type="button" id="undo">Undo</button>
+        <button type="button" id="again">Add another</button>
+      </div>
+    </section>
+
+    <footer id="account" hidden>
+      <span id="who" class="muted"></span>
+      <button type="button" id="signout" class="link">Sign out</button>
+    </footer>
+  </main>
+</body>
+</html>

@@ -1,0 +1,66 @@
+:root {
+  --primary: #2f6fdb;
+  --primary-ink: #ffffff;
+  --tint: #ebf1fc;
+  --ink: #1d1d1f;
+  --muted: #6e6e73;
+  --line: #e3e3e8;
+  --bg: #ffffff;
+  --field: #f6f6f8;
+  --ok: #2e8b57;
+  --error: #d2493b;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --tint: #1f2a3d;
+    --ink: #f2f2f4;
+    --muted: #a1a1a8;
+    --line: #3a3a3f;
+    --bg: #1e1e20;
+    --field: #2a2a2d;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 14px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+}
+main { padding: 16px; display: flex; flex-direction: column; gap: 14px; }
+header { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 15px; }
+header img { border-radius: 5px; }
+form, section { display: flex; flex-direction: column; gap: 14px; }
+label { display: flex; flex-direction: column; gap: 6px; font-weight: 500; }
+label.row { flex-direction: row; align-items: center; justify-content: space-between; }
+input[type=email], input[type=password], input[type=date], textarea {
+  font: inherit; color: inherit;
+  background: var(--field);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+textarea { resize: vertical; font-weight: 400; }
+input:focus, textarea:focus { outline: 2px solid var(--primary); outline-offset: -1px; }
+fieldset { border: 0; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+legend { font-weight: 500; padding: 0; margin-bottom: 6px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  font: inherit; color: inherit; cursor: pointer;
+  background: transparent; border: 1px solid var(--line);
+  border-radius: 999px; padding: 4px 12px;
+}
+.chip.on { background: var(--tint); border-color: var(--primary); color: var(--primary); }
+.check { flex-direction: row; align-items: center; gap: 8px; font-weight: 400; }
+.hint, .muted { color: var(--muted); font-size: 12.5px; margin: 0; }
+button { font: inherit; cursor: pointer; border-radius: 8px; padding: 8px 14px;
+  border: 1px solid var(--line); background: transparent; color: inherit; }
+button.primary { background: var(--primary); color: var(--primary-ink); border-color: var(--primary); font-weight: 600; }
+button:disabled { opacity: .6; cursor: default; }
+button.link { border: 0; padding: 0; color: var(--primary); background: none; font-size: 12.5px; }
+.actions { display: flex; gap: 8px; }
+.ok { color: var(--ok); font-size: 15px; margin: 0; }
+.error { color: var(--error); font-size: 12.5px; margin: 0; }
+footer { display: flex; justify-content: space-between; align-items: center;
+  border-top: 1px solid var(--line); padding-top: 10px; }
+[hidden] { display: none !important; }

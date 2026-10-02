@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Template: scripts/build.sh replaces https://camsoncoding.github.io/stuff-outlook and writes dist/manifest.xml. -->
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+           xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides/1.0"
+           xsi:type="MailApp">
+  <Id>118fc313-7619-41c0-a7a0-14fa9090d8b1</Id>
+  <Version>1.0.0.0</Version>
+  <ProviderName>Camson Consulting</ProviderName>
+  <DefaultLocale>en-US</DefaultLocale>
+  <DisplayName DefaultValue="Stuff"/>
+  <Description DefaultValue="Turn an email into a Stuff task for follow-up."/>
+  <IconUrl DefaultValue="https://camsoncoding.github.io/stuff-outlook/assets/icon-64.png"/>
+  <HighResolutionIconUrl DefaultValue="https://camsoncoding.github.io/stuff-outlook/assets/icon-128.png"/>
+  <SupportUrl DefaultValue="https://camsoncoding.github.io/stuff-outlook/taskpane.html"/>
+  <AppDomains>
+    <AppDomain>https://camsoncoding.github.io/stuff-outlook</AppDomain>
+  </AppDomains>
+  <Hosts>
+    <Host Name="Mailbox"/>
+  </Hosts>
+  <Requirements>
+    <Sets>
+      <Set Name="Mailbox" MinVersion="1.1"/>
+    </Sets>
+  </Requirements>
+  <FormSettings>
+    <Form xsi:type="ItemRead">
+      <DesktopSettings>
+        <SourceLocation DefaultValue="https://camsoncoding.github.io/stuff-outlook/taskpane.html"/>
+        <RequestedHeight>250</RequestedHeight>
+      </DesktopSettings>
+    </Form>
+  </FormSettings>
+  <Permissions>ReadItem</Permissions>
+  <Rule xsi:type="RuleCollection" Mode="Or">
+    <Rule xsi:type="ItemIs" ItemType="Message" FormType="Read"/>
+  </Rule>
+  <DisableEntityHighlighting>false</DisableEntityHighlighting>
+
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides" xsi:type="VersionOverridesV1_0">
+    <Requirements>
+      <bt:Sets DefaultMinVersion="1.3">
+        <bt:Set Name="Mailbox"/>
+      </bt:Sets>
+    </Requirements>
+    <Hosts>
+      <Host xsi:type="MailHost">
+        <DesktopFormFactor>
+          <ExtensionPoint xsi:type="MessageReadCommandSurface">
+            <OfficeTab id="TabDefault">
+              <Group id="stuffReadGroup">
+                <Label resid="Group.Label"/>
+                <Control xsi:type="Button" id="stuffReadButton">
+                  <Label resid="Button.Label"/>
+                  <Supertip>
+                    <Title resid="Button.Label"/>
+                    <Description resid="Button.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16"/>
+                    <bt:Image size="32" resid="Icon.32"/>
+                    <bt:Image size="80" resid="Icon.80"/>
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <SourceLocation resid="Taskpane.Url"/>
+                  </Action>
+                </Control>
+              </Group>
+            </OfficeTab>
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
+    </Hosts>
+    <Resources>
+      <bt:Images>
+        <bt:Image id="Icon.16" DefaultValue="https://camsoncoding.github.io/stuff-outlook/assets/icon-16.png"/>
+        <bt:Image id="Icon.32" DefaultValue="https://camsoncoding.github.io/stuff-outlook/assets/icon-32.png"/>
+        <bt:Image id="Icon.80" DefaultValue="https://camsoncoding.github.io/stuff-outlook/assets/icon-80.png"/>
+      </bt:Images>
+      <bt:Urls>
+        <bt:Url id="Taskpane.Url" DefaultValue="https://camsoncoding.github.io/stuff-outlook/taskpane.html"/>
+      </bt:Urls>
+      <bt:ShortStrings>
+        <bt:String id="Group.Label" DefaultValue="Stuff"/>
+        <bt:String id="Button.Label" DefaultValue="Add to Stuff"/>
+      </bt:ShortStrings>
+      <bt:LongStrings>
+        <bt:String id="Button.Tooltip" DefaultValue="Turn this email into a Stuff task."/>
+      </bt:LongStrings>
+    </Resources>
+
+    <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides/1.1" xsi:type="VersionOverridesV1_1">
+      <Requirements>
+        <bt:Sets DefaultMinVersion="1.5">
+          <bt:Set Name="Mailbox"/>
+        </bt:Sets>
+      </Requirements>
+      <Hosts>
+        <Host xsi:type="MailHost">
+          <DesktopFormFactor>
+            <ExtensionPoint xsi:type="MessageReadCommandSurface">
+              <OfficeTab id="TabDefault">
+                <Group id="stuffReadGroup">
+                  <Label resid="Group.Label"/>
+                  <Control xsi:type="Button" id="stuffReadButton">
+                    <Label resid="Button.Label"/>
+                    <Supertip>
+                      <Title resid="Button.Label"/>
+                      <Description resid="Button.Tooltip"/>
+                    </Supertip>
+                    <Icon>
+                      <bt:Image size="16" resid="Icon.16"/>
+                      <bt:Image size="32" resid="Icon.32"/>
+                      <bt:Image size="80" resid="Icon.80"/>
+                    </Icon>
+                    <Action xsi:type="ShowTaskpane">
+                      <SourceLocation resid="Taskpane.Url"/>
+                      <SupportsPinning>true</SupportsPinning>
+                    </Action>
+                  </Control>
+                </Group>
+              </OfficeTab>
+            </ExtensionPoint>
+          </DesktopFormFactor>
+          <MobileFormFactor>
+            <ExtensionPoint xsi:type="MobileMessageReadCommandSurface">
+              <Group id="stuffMobileGroup">
+                <Label resid="Group.Label"/>
+                <Control xsi:type="MobileButton" id="stuffMobileButton">
+                  <Label resid="Button.Label"/>
+                  <Icon xsi:type="bt:MobileIconList">
+                    <bt:Image size="25" scale="1" resid="Icon.25"/>
+                    <bt:Image size="25" scale="2" resid="Icon.25"/>
+                    <bt:Image size="25" scale="3" resid="Icon.25"/>
+                    <bt:Image size="32" scale="1" resid="Icon.32"/>
+                    <bt:Image size="32" scale="2" resid="Icon.32"/>
+                    <bt:Image size="32" scale="3" resid="Icon.32"/>
+                    <bt:Image size="48" scale="1" resid="Icon.48"/>
+                    <bt:Image size="48" scale="2" resid="Icon.48"/>
+                    <bt:Image size="48" scale="3" resid="Icon.48"/>
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <SourceLocation resid="Taskpane.Url"/>
+                  </Action>
+                </Control>
+              </Group>
+            </ExtensionPoint>
+          </MobileFormFactor>
+        </Host>
+      </Hosts>
+      <Resources>
+        <bt:Images>
+          <bt:Image id="Icon.16" DefaultValue="https://camsoncoding.github.io/stuff-outlook/assets/icon-16.png"/>
+          <bt:Image id="Icon.25" DefaultValue="https://camsoncoding.github.io/stuff-outlook/assets/icon-25.png"/>
+          <bt:Image id="Icon.32" DefaultValue="https://camsoncoding.github.io/stuff-outlook/assets/icon-32.png"/>
+          <bt:Image id="Icon.48" DefaultValue="https://camsoncoding.github.io/stuff-outlook/assets/icon-48.png"/>
+          <bt:Image id="Icon.80" DefaultValue="https://camsoncoding.github.io/stuff-outlook/assets/icon-80.png"/>
+        </bt:Images>
+        <bt:Urls>
+          <bt:Url id="Taskpane.Url" DefaultValue="https://camsoncoding.github.io/stuff-outlook/taskpane.html"/>
+        </bt:Urls>
+        <bt:ShortStrings>
+          <bt:String id="Group.Label" DefaultValue="Stuff"/>
+          <bt:String id="Button.Label" DefaultValue="Add to Stuff"/>
+        </bt:ShortStrings>
+        <bt:LongStrings>
+          <bt:String id="Button.Tooltip" DefaultValue="Turn this email into a Stuff task."/>
+        </bt:LongStrings>
+      </Resources>
+    </VersionOverrides>
+  </VersionOverrides>
+</OfficeApp>
